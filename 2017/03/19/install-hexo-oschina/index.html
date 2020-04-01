@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="JTongChen">
+
+
+
+
+
+<title>关于Hexo的安装和部署页面到oschina | JTongChen</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">JTongChen&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">JTongChen&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list" style="font-size:15px">
+    </div>
+    <div class="tocbot-list-menu" style="font-size:15px">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">关于Hexo的安装和部署页面到oschina</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">JTongChen</a>
+                    
+
+                    
+                        <span class="post-time">
+                        &nbsp;&nbsp;Date: <a href="#">March 19, 2017&nbsp;&nbsp;14:35:41</a>
+                        </span>
+                    
+					
+					<span id="/2017/03/19/install-hexo-oschina/" class="leancloud-visitors view" data-flag-title="关于Hexo的安装和部署页面到oschina">
+						<em class="post-meta-item-text">&nbsp;&nbsp;Pageviews:</em>
+						<i class="leancloud-visitors-count">0</i>
+					</span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>这是我的第一篇个人博客，利用的是Hexo的博客框架。至于文章则使用Markdown写的。现在来介绍一下Hexo的安装过程，如何利用Hexo和github中国开源发布静态网页。</p>
+<h3 id="关于Hexo的安装"><a href="#关于Hexo的安装" class="headerlink" title="关于Hexo的安装"></a>关于Hexo的安装</h3><h4 id="可以关注Hexo官方教程-或者我的良师益友oldbiwang的博客"><a href="#可以关注Hexo官方教程-或者我的良师益友oldbiwang的博客" class="headerlink" title="可以关注Hexo官方教程 或者我的良师益友oldbiwang的博客"></a>可以关注<a href="https://hexo.io/zh-cn/docs/setup.html" target="_blank" rel="noopener">Hexo官方教程</a> 或者我的良师益友<a href="http://oldbiwang.oschina.io/2016/03/19/createhexoblog/#more" target="_blank" rel="noopener">oldbiwang</a>的博客</h4><ol>
+<li>安装<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a>和<a href="https://git-scm.com/download/win" target="_blank" rel="noopener">git</a><br>验证安装成功与否：按住win+R，输入cmd打开系统命令行，输入如下命令：  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line"># 显示安装的node的版本 </span><br><span class="line">git version</span><br><span class="line"># 安装的git的版本</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="2">
+<li><p>安装Hexo，打开git-Bash命令行，输入命令：<br><code>$ npm install -g hexo-cli</code></p>
+</li>
+<li><p>安装Hexo之后，接着在git命令行中输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init folder</span><br><span class="line"># folder是你选择的文件夹，hexo会在folder文件夹新建所需要的文件</span><br><span class="line">$ cd folder</span><br><span class="line">$ npm install</span><br><span class="line">#之后会出现如下目录：</span><br><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入source资源文件，创建md文件，也就是博客文章文件。md全称markdown，提供一个<a href="http://www.markdown.cn/#code-blocks" target="_blank" rel="noopener">markdown</a>学习网址。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd source</span><br><span class="line">$ hexo new 文件名</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<ol start="5">
+<li><p>生成静态文件和部署文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接着，启动本地服务器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s(或者是hexo server)</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http:&#x2F;&#x2F;localhost:4000&#x2F;. Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打开浏览器输入地址<code>http://localhost:4000/</code>，就可以看到你的网页了。<br>下面是我的主页：<br><img src="installhexo.png" alt="homeindex"><br>到此为止，Hexo的安装和本地发布已经完成。</p>
+</li>
+</ol>
+<hr>
+<h3 id="利用github开源中国发布博客"><a href="#利用github开源中国发布博客" class="headerlink" title="利用github开源中国发布博客"></a>利用github开源中国发布博客</h3><ol>
+<li>首先，需要去码云<a href="http://git.oschina.net/" target="_blank" rel="noopener">github中国</a>注册一个帐号。（特别注意昵称和用户名都用英文小写，后面会讲解原因。）</li>
+</ol>
+<ol start="2">
+<li>接着，在码云创建一个新的项目，设置如下：<br><img src="installhexo1.jpg" alt="project"><br>复制这里的https地址，后面需要：<br><img src="installhexo2.jpg" alt="httpcopyimage">  </li>
+<li>打开git客户端，输入命令，安装插件，用于将hexo部署到码云：<br><code>$ npm install hexo-deploy-git --save</code>  </li>
+<li>更改电脑Hexo安装目录下的_config.yml配置文件（建议下载<a href="https://notepad-plus-plus.org/download/v7.3.3.html" target="_blank" rel="noopener">Notepad++</a>打开该文件，而且window系统的一般编辑文本之类的都用Nodepad++，因为系统自带的文本编辑会带来许多问题）：<br><img src="installhexo3.jpg" alt="config"><br>这里的repo之后的内容就是前面在码云上复制的项目http地址。另外，yml的格式要求就是分号 : 后面要加一个空格。</li>
+</ol>
+<ol start="5">
+<li>接下来利用git开始部署hexo文件到码云：<br><code>$ hexo deploy</code><br>这时会弹出一个对话框，输入码云的账号密码。然后登录码云，可以看到你所建的项目里出现了本地hexo文件里public文件夹里的内容。  </li>
+<li>启动码云pages服务：<br><img src="installhexo4.jpg" alt="pages"><br>这个地址就是你的博客在码云上搭载的服务器地址，可以用浏览器打开该地址，就可以看到你的博客。<br>到此，利用hexo和码云发布博客也就完成了。至于发表博客，则可以在sourc的_posts文件夹下新建md格式的文件，然后可以通过markdown的编辑器进行编辑。  </li>
+<li>说明一下前面为何说码云的账户和昵称要用全部小写。博主本人就是因为用了一个包含大写字母的账号，结果将博客deploy上去码云之后，开启了pages服务，打开了那个链接，结果我的博客只有文字没有样式，但是在本地的localhost：4000访问又正常。贴一张一开始生成错误的博客的图片：<br><img src="installhexo5.jpg" alt="wrong"><br>这个问题困扰了博主两天，最后是oldbiwang发现之后才解决的。。。<br>附上markdown编辑器的下载网址：</li>
+</ol>
+<ul>
+<li>window系统：<a href="http://markdownpad.com/" target="_blank" rel="noopener">Markdown Pad</a>、<a href="http://code52.org/DownmarkerWPF/" target="_blank" rel="noopener">MarkPad</a>、<a href="https://atom.io/" target="_blank" rel="noopener">GitHub Atom</a></li>
+<li>linux系统：<a href="https://sourceforge.net/projects/retext/?source=directory" target="_blank" rel="noopener">ReText</a></li>
+<li>Mac系统：<a href="http://25.io/mou/" target="_blank" rel="noopener">Mou</a></li>
+<li>在线编辑器：<a href="https://markable.in/" target="_blank" rel="noopener">Markable.in</a>、<a href="http://www.jianshu.com/" target="_blank" rel="noopener">简书</a></li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>JTongChen</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://jtongchen.github.io/2017/03/19/install-hexo-oschina/">https://jtongchen.github.io/2017/03/19/install-hexo-oschina/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="https://jtongchen.github.io/">JTongChen</a></span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/the-first-article/"># the first article</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2017/03/24/first-springmvc/">first-springmvc</a>
+            
+            
+        </section>
+
+		
+		
+			<section id="comments" class="comments" style="border-radius:10px;margin-top:50px">
+			<style>
+				.comments{margin:30px;padding:10px;background:#eee}
+				@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+			</style>
+			<div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+      el: '.valine_comment',
+      app_id: 'aGc71wUTWGmDQSe9JExrB8by-gzGzoHsz',
+      app_key: 'NjfReYd7E2wfvfYcjWYjMweT',
+      placeholder: 'comment here...',
+      notify: 'true',
+      verify: '',
+    });
+</script>
+			</section>
+		
+		
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© JTongChen | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

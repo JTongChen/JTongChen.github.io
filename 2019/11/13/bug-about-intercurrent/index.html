@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="JTongChen">
+
+
+
+
+
+<title>一个并发问题引发的bug | JTongChen</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">JTongChen&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">JTongChen&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list" style="font-size:15px">
+    </div>
+    <div class="tocbot-list-menu" style="font-size:15px">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">一个并发问题引发的bug</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">JTongChen</a>
+                    
+
+                    
+                        <span class="post-time">
+                        &nbsp;&nbsp;Date: <a href="#">November 13, 2019&nbsp;&nbsp;23:15:26</a>
+                        </span>
+                    
+					
+					<span id="/2019/11/13/bug-about-intercurrent/" class="leancloud-visitors view" data-flag-title="一个并发问题引发的bug">
+						<em class="post-meta-item-text">&nbsp;&nbsp;Pageviews:</em>
+						<i class="leancloud-visitors-count">0</i>
+					</span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>今天，一个生产环境的bug引发我写下这篇博客的想法。</p>
+<h3 id="背景说明："><a href="#背景说明：" class="headerlink" title="背景说明："></a>背景说明：</h3><p>公司有一个营销计划的功能模块是由我负责开发维护。计划模块是异步定时任务类型，用户通过产品设置了计划，利用定时器(附上定时器统一管理项目xxl-job的教程说明<a href="https://www.xuxueli.com/xxl-job/#/" target="_blank" rel="noopener">xxl-job</a>)，在设定时刻进行计划的开始。</p>
+<p>问题的发现是前阵子一个计划设置的优惠券被发送了两次，于是，在数据库里多番查找，最终发现是整个计划被执行了两次。</p>
+<p>营销计划是通过定时器，每五分钟查出等待中(W)状态的计划，然后进行计划的发送(逻辑复杂)，并且将计划置为进行中(E)。然而，就是那段复杂的逻辑，导致上一次定时器轮询查出的W状态的计划还未完成，定时器的下一次轮询就又把同一个计划load出来，然后进行发送，导致了同个计划被执行了两次。</p>
+<h3 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h3><p>通过添加一个中间态:执行中(R)，来保证每个计划一旦被某次定时器的轮询load到，则事先更新成R状态，然后再进行复杂的发送逻辑，发送之后再更新为E状态。</p>
+<p>需要注意的是，要确保更新成R状态成功之后，才能进行之后的计划执行业务。这样，一旦两次轮询通过W状态的条件查询都能load出同个计划的时候(即第一次轮询了多个计划，但是还未执行到计划B的时候，第二次定时器轮询load出了W状态的B，这样两次轮询都持有W状态的B计划)，只有能更新R状态成功的那次轮询可以执行后续逻辑。</p>
+<h3 id="问题再现："><a href="#问题再现：" class="headerlink" title="问题再现："></a>问题再现：</h3><ol>
+<li>在通过上述方案处理之后，本以为可以解决并发带来的问题。在今天，同样的问题再次出现，只能通过再次查看定时器的代码逻辑来查找问题所在。<br>再次折腾之后，发现之前的处理方案中，被我忽略了至关重要的更新条件。前面的处理方式只是将W状态的数据，通过id更新状态成R，与此同时，公司项目中使用了mybatis的通用mapper插件，进行更新，只要能记录存在，不管是否更新到数据，返回结果都是1。而之前又是根据返回结果是否是1进行后续计划发送逻辑，这就导致当前面说的两次定时器轮询都持有W状态的B计划的情况，这两次轮询对计划更新成R状态的时候都是返回1，就都进行了后续逻辑。</li>
+<li>于是，在更新的时候，不能只是根据id进行更新，而是根据id加上W状态作为条件进行更新，才能保证正确的返回结果。</li>
+<li>这次是踩了坑，也学到了，在进行数据库增删改的操作，要十分注意并发问题的处理方式，一些必要的条件不可缺少。</li>
+</ol>
+<h3 id="图示："><a href="#图示：" class="headerlink" title="图示："></a>图示：</h3><p>下面两张图展示一下，两次解决方案之后，计划的执行流程：</p>
+<ol>
+<li><p>不根据W状态做条件的方案:<br><img src="1.jpg" alt="不根据W状态做条件的方案"></p>
+</li>
+<li><p>根据W状态做条件的方案:<br><img src="2.jpg" alt="根据W状态做条件的方案"></p>
+</li>
+</ol>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>JTongChen</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://jtongchen.github.io/2019/11/13/bug-about-intercurrent/">https://jtongchen.github.io/2019/11/13/bug-about-intercurrent/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="https://jtongchen.github.io/">JTongChen</a></span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/A-bug-about-intercurrent/"># A bug about intercurrent</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/11/16/MicroService/">微服务</a>
+            
+            
+            <a class="next" rel="next" href="/2019/08/22/java-websocket/">关于java websocket</a>
+            
+        </section>
+
+		
+		
+			<section id="comments" class="comments" style="border-radius:10px;margin-top:50px">
+			<style>
+				.comments{margin:30px;padding:10px;background:#eee}
+				@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+			</style>
+			<div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+      el: '.valine_comment',
+      app_id: 'aGc71wUTWGmDQSe9JExrB8by-gzGzoHsz',
+      app_key: 'NjfReYd7E2wfvfYcjWYjMweT',
+      placeholder: 'comment here...',
+      notify: 'true',
+      verify: '',
+    });
+</script>
+			</section>
+		
+		
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© JTongChen | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="JTongChen">
+
+
+
+
+
+<title>配置中心Apollo | JTongChen</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">JTongChen&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">JTongChen&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list" style="font-size:15px">
+    </div>
+    <div class="tocbot-list-menu" style="font-size:15px">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">配置中心Apollo</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">JTongChen</a>
+                    
+
+                    
+                        <span class="post-time">
+                        &nbsp;&nbsp;Date: <a href="#">March 29, 2020&nbsp;&nbsp;13:53:59</a>
+                        </span>
+                    
+					
+					<span id="/2020/03/29/apollo/" class="leancloud-visitors view" data-flag-title="配置中心Apollo">
+						<em class="post-meta-item-text">&nbsp;&nbsp;Pageviews:</em>
+						<i class="leancloud-visitors-count">0</i>
+					</span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="apollo概述"><a href="#apollo概述" class="headerlink" title="apollo概述"></a>apollo概述</h3><p>用过spring项目开发的人都知道，spring的配置信息，都需要用配置文件(例如:application.properties)以key-value的方式进行记录，然后代码中使用<code>@Value</code>注解引入这些变量。虽然将配置信息与代码抽离，但是也存在问题：将配置信息文件放入项目，打包部署，也就意味着，后续需要修改配置相关信息，则需要重新打包部署项目。并且，项目如果接入微服务架构，那些这种操作也就显得更加不方便。<br>于是，配置中心<a href="https://github.com/ctripcorp/apollo" target="_blank" rel="noopener">Apollo</a>应运而生。所谓配置中心，就是将项目需要引入的配置信息，统一存放在Apollo上，统一管理修改，并且支持热发布(在Apollo上修改对应配置信息，界面操作发布，指向的应用程序会及时自动重新加载量信息)。此外，对于集群部署的应用，Apollo同样支持配置，在配置中心可以对不同集群进行不同的配置，做到同样的项目代码，可以读取不同的配置信息。<br>配置中心主界面大致如下：<br><img src="apollo-home.jpg" alt="apollo主界面"><br>对于微服务的配置中心，将每个服务作为一个独立项目配置于Apollo即可。<br>具体配置参数界面如下：<br><img src="apollo-detail.jpg" alt="apollo参数配置"><br>可见，各个参数也是以key-value形式设置。</p>
+<h3 id="apollo好处"><a href="#apollo好处" class="headerlink" title="apollo好处"></a>apollo好处</h3><h4 id="统一管理不同环境、不同集群的配置"><a href="#统一管理不同环境、不同集群的配置" class="headerlink" title="统一管理不同环境、不同集群的配置"></a>统一管理不同环境、不同集群的配置</h4><ul>
+<li>Apollo提供了一个统一界面集中式管理不同环境（environment）、不同集群（cluster）、不同命名空间（namespace）的配置</li>
+<li>同一份代码部署在不同的集群，可以有不同的配置</li>
+<li>通过命名空间（namespace）可以支持多个不同应用共享同一份配置</li>
+</ul>
+<h4 id="配置修改实时生效（热发布）"><a href="#配置修改实时生效（热发布）" class="headerlink" title="配置修改实时生效（热发布）"></a>配置修改实时生效（热发布）</h4><ul>
+<li>在Apollo修改完配置并发布后，客户端能实时（1秒）接收到最新的配置，并通知到应用程序</li>
+</ul>
+<h3 id="apollo配置修改通知机制"><a href="#apollo配置修改通知机制" class="headerlink" title="apollo配置修改通知机制"></a>apollo配置修改通知机制</h3><p>由apollo监测到配置信息发生修改发布，并通知应用端。应用端从apollo出获取加载新的配置信息。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>JTongChen</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://jtongchen.github.io/2020/03/29/apollo/">https://jtongchen.github.io/2020/03/29/apollo/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="https://jtongchen.github.io/">JTongChen</a></span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83Apollo/"># 配置中心Apollo</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/03/31/java-final/">java中的final关键字</a>
+            
+            
+            <a class="next" rel="next" href="/2019/11/17/xxl-job/">xxl-job</a>
+            
+        </section>
+
+		
+		
+			<section id="comments" class="comments" style="border-radius:10px;margin-top:50px">
+			<style>
+				.comments{margin:30px;padding:10px;background:#eee}
+				@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+			</style>
+			<div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+      el: '.valine_comment',
+      app_id: 'aGc71wUTWGmDQSe9JExrB8by-gzGzoHsz',
+      app_key: 'NjfReYd7E2wfvfYcjWYjMweT',
+      placeholder: 'comment here...',
+      notify: 'true',
+      verify: '',
+    });
+</script>
+			</section>
+		
+		
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© JTongChen | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

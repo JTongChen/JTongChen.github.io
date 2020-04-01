@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="JTongChen">
+
+
+
+
+
+<title>xxl-job | JTongChen</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">JTongChen&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">JTongChen&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list" style="font-size:15px">
+    </div>
+    <div class="tocbot-list-menu" style="font-size:15px">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">xxl-job</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">JTongChen</a>
+                    
+
+                    
+                        <span class="post-time">
+                        &nbsp;&nbsp;Date: <a href="#">November 17, 2019&nbsp;&nbsp;17:28:24</a>
+                        </span>
+                    
+					
+					<span id="/2019/11/17/xxl-job/" class="leancloud-visitors view" data-flag-title="xxl-job">
+						<em class="post-meta-item-text">&nbsp;&nbsp;Pageviews:</em>
+						<i class="leancloud-visitors-count">0</i>
+					</span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="背景："><a href="#背景：" class="headerlink" title="背景："></a>背景：</h3><p>定时任务，是业务中避免不了的模块，很多情况下，有些业务必须是有定时执行的概念。<br>基于spring-boot作为框架的开发，可以选择spring的定时任务模块，使用注解@Scheduled，配上相应的cron时间表达式，就能定义一个定时任务。<br>随着现在微服务的日益重要，业务模块解耦愈来愈受欢迎，所以，能把定时任务与业务做抽离，也是很好的思想设计。<br>github上的<a href="https://www.xuxueli.com/xxl-job/#/" target="_blank" rel="noopener">xxl-job</a>，就是很好的定时任务功能模块。引入xxl之后，我们需要做的只是在xxl上进行相关执行器的配置，之后任务的调度就由xxl管理，开发人员只需实现好执行器的相关业务逻辑。</p>
+<h3 id="xxl-job介绍："><a href="#xxl-job介绍：" class="headerlink" title="xxl-job介绍："></a>xxl-job介绍：</h3><p>借鉴网上找到的图，简单介绍一下xxl-job机制：<br><img src="xxl-contribution.jpg" alt="xxl结构"><br>可见，xxl对定时任务的实现有较全面的功能，包括定时器的调度、调度结果的回调记录、调度的具体日志、任务失败的警告、任务的重试机制。使用者可以通过引入xxl，对定时器进行系统的管理，同时，定时器相关的调度也可以与应用其他业务功能解耦，xxl只负责定时器相关。<br>需要说明的是：</p>
+<ol>
+<li>XXL-JOB调度模块默认采用并行机制，在多线程调度的情况下，调度模块被阻塞的几率很低，大大提高了调度系统的承载量。</li>
+<li>XXL-JOB的每个调度任务虽然在调度模块是并行调度执行的，但是任务调度传递到任务模块的“执行器”确实串行执行的，同时支持任务终止。</li>
+</ol>
+<p>总结就是，xxl的调度，可以并发的通知调度。但是，xxl的执行器是采取队列的形式，既最终的各个执行器的执行，其实是串行的。<br>by the way:对于执行器的实现，需要根据具体业务具体考虑。如果同个定时器的执行时间差较短，容易发生并发问题的，需要注意定时器的幂等实现或者通过业务状态属性(例如可以给任务批次设置执行状态:未开始、进行中、执行结束等等)进行控制。</p>
+<h3 id="xxl-job使用："><a href="#xxl-job使用：" class="headerlink" title="xxl-job使用："></a>xxl-job使用：</h3><p>关于应用如何引入xxl-job并且使用，在<a href="https://www.xuxueli.com/xxl-job/#%E4%BA%8C%E3%80%81%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8" target="_blank" rel="noopener">xxl-job官方文档</a>已经有了详细的说明。<br>这里说一下，在xxl-job的操作页面，可以对不同的应用环境设置不同的定时器，这对集群部署的项目是很有必要的点。另外，也可在页面进行手动调用定时器、查看定时器执行结果、执行日志等等，也会有总的定时器执行统计，是一款很好的定时器管理工具。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>JTongChen</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://jtongchen.github.io/2019/11/17/xxl-job/">https://jtongchen.github.io/2019/11/17/xxl-job/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="https://jtongchen.github.io/">JTongChen</a></span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%BF%83/"># 定时任务中心</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/03/29/apollo/">配置中心Apollo</a>
+            
+            
+            <a class="next" rel="next" href="/2019/11/16/MicroService/">微服务</a>
+            
+        </section>
+
+		
+		
+			<section id="comments" class="comments" style="border-radius:10px;margin-top:50px">
+			<style>
+				.comments{margin:30px;padding:10px;background:#eee}
+				@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+			</style>
+			<div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+      el: '.valine_comment',
+      app_id: 'aGc71wUTWGmDQSe9JExrB8by-gzGzoHsz',
+      app_key: 'NjfReYd7E2wfvfYcjWYjMweT',
+      placeholder: 'comment here...',
+      notify: 'true',
+      verify: '',
+    });
+</script>
+			</section>
+		
+		
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© JTongChen | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

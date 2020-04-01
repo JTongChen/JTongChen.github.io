@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="JTongChen">
+
+
+
+
+
+<title>first-springmvc | JTongChen</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">JTongChen&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">JTongChen&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list" style="font-size:15px">
+    </div>
+    <div class="tocbot-list-menu" style="font-size:15px">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">first-springmvc</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">JTongChen</a>
+                    
+
+                    
+                        <span class="post-time">
+                        &nbsp;&nbsp;Date: <a href="#">March 24, 2017&nbsp;&nbsp;22:41:33</a>
+                        </span>
+                    
+					
+					<span id="/2017/03/24/first-springmvc/" class="leancloud-visitors view" data-flag-title="first-springmvc">
+						<em class="post-meta-item-text">&nbsp;&nbsp;Pageviews:</em>
+						<i class="leancloud-visitors-count">0</i>
+					</span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>前些日子从oldbiwang那里拷来了关于springMVC的教程视频，学习了如何制作一个spring mvc框架的web应用。这里分享一下学习过程。<br>首先，编译web程序，可以用<a href="https://www.eclipse.org/downloads/" target="_blank" rel="noopener">eclipse</a>编译器，同时下载web服务器<a href="http://tomcat.apache.org/" target="_blank" rel="noopener">Tomcat</a>，并且在eclipse中配置Tomcat，<a href="http://jingyan.baidu.com/article/3065b3b6efa9d7becff8a4c6.html" target="_blank" rel="noopener">配置教程</a>。<br>其次，你需要下载<a href="http://repo.spring.io/release/org/springframework/spring/" target="_blank" rel="noopener">spring包</a>，以及springmvc的依赖包：<a href="http://mvnrepository.com/artifact/jstl/jstl/1.2" target="_blank" rel="noopener">jstl.jar</a>、<a href="http://repo2.maven.org/maven2/taglibs/standard/" target="_blank" rel="noopener">standard.jar</a>、<a href="http://mvnrepository.com/artifact/commons-logging/commons-logging" target="_blank" rel="noopener">commons-logging.jar</a>。</p>
+<h3 id="正式开始springmvc框架web程序的编写："><a href="#正式开始springmvc框架web程序的编写：" class="headerlink" title="正式开始springmvc框架web程序的编写："></a>正式开始springmvc框架web程序的编写：</h3><ol>
+<li>在WebContent-&gt;WEB-INF-&gt;lib中加入下面几个包：<br><img src="2.jpg" alt="">  </li>
+<li>web.xml的配置：在xml中配置DispatcherServlet和servlet-mapping。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;web-app xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot; xmlns&#x3D;&quot;http:&#x2F;&#x2F;java.sun.com&#x2F;xml&#x2F;ns&#x2F;javaee&quot;</span><br><span class="line">         xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;java.sun.com&#x2F;xml&#x2F;ns&#x2F;javaee http:&#x2F;&#x2F;java.sun.com&#x2F;xml&#x2F;ns&#x2F;javaee&#x2F;web-app_3_0.xsd&quot;</span><br><span class="line">		 id&#x3D;&quot;WebApp_ID&quot; version&#x3D;&quot;3.0&quot;&gt;</span><br><span class="line">  &lt;display-name&gt;springmvc&lt;&#x2F;display-name&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!--DispatcherServlet配置  --&gt;</span><br><span class="line">  &lt;servlet&gt;</span><br><span class="line">  	&lt;servlet-name&gt;springmvc&lt;&#x2F;servlet-name&gt;</span><br><span class="line">  	&lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet &lt;&#x2F;servlet-class&gt;</span><br><span class="line">  	&lt;!-- 启动servlet --&gt;</span><br><span class="line">  	&lt;load-on-startup&gt;1&lt;&#x2F;load-on-startup&gt;</span><br><span class="line">  &lt;&#x2F;servlet&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;!-- 配置servlet-mapping --&gt;</span><br><span class="line">  &lt;servlet-mapping&gt;</span><br><span class="line">  	&lt;servlet-name&gt;springmvc&lt;&#x2F;servlet-name&gt;</span><br><span class="line">  	&lt;url-pattern&gt;*.do&lt;&#x2F;url-pattern&gt;</span><br><span class="line">  &lt;&#x2F;servlet-mapping&gt;</span><br><span class="line"></span><br><span class="line">  &lt;welcome-file-list&gt;</span><br><span class="line">    &lt;welcome-file&gt;index.html&lt;&#x2F;welcome-file&gt;</span><br><span class="line">    &lt;welcome-file&gt;index.htm&lt;&#x2F;welcome-file&gt;</span><br><span class="line">    &lt;welcome-file&gt;index.jsp&lt;&#x2F;welcome-file&gt;</span><br><span class="line">    &lt;welcome-file&gt;default.html&lt;&#x2F;welcome-file&gt;</span><br><span class="line">    &lt;welcome-file&gt;default.htm&lt;&#x2F;welcome-file&gt;</span><br><span class="line">    &lt;welcome-file&gt;default.jsp&lt;&#x2F;welcome-file&gt;</span><br><span class="line">  &lt;&#x2F;welcome-file-list&gt;</span><br><span class="line">&lt;&#x2F;web-app&gt;</span><br></pre></td></tr></table></figure></li>
+<li>在WEB-INF添加springmvc配置文件：[DispatcherServlet Name]-servlet.xml文件（本例创建为：springmvc-servlet.xml）。新建的xml只有编码说明，并没有内容，需要打开spring-framework-4.1.6.RELEASE\docs\spring-framework-reference\html\index.html文件，按下面动图找到该段代码复制到springmvc-servlet.xml中：<br><img src="4.gif" alt="4">  </li>
+<li>编写java代码，在Java Resource-&gt;src新建一个包（此例包名为：springmvc.test.controller），在包下新建一个HelloController.java的java文件：<br><img src="5.jpg" alt="5"><br>HelloController.java的内容如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">package springmvc.test.controller;</span><br><span class="line"></span><br><span class="line">import javax.servlet.http.HttpServletRequest;</span><br><span class="line">import javax.servlet.http.HttpServletResponse;</span><br><span class="line">import org.springframework.web.servlet.ModelAndView;</span><br><span class="line">import org.springframework.web.servlet.mvc.Controller;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;实现Controller接口</span><br><span class="line">public class HelloController implements Controller&#123;</span><br><span class="line">	&#x2F;&#x2F;实现handleRequest方法</span><br><span class="line">	@Override</span><br><span class="line">	public ModelAndView handleRequest(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception &#123;</span><br><span class="line">		&#x2F;&#x2F;创建一个ModelAndView视图对象</span><br><span class="line">		ModelAndView mView &#x3D; new ModelAndView();</span><br><span class="line">		&#x2F;&#x2F;封装要显示到视图中的数据，向ModelAndView对象中添加数据</span><br><span class="line">		mView.addObject(&quot;msg&quot;,&quot;Hello MVC&quot;);</span><br><span class="line">		&#x2F;&#x2F;设置视图名</span><br><span class="line">		mView.setViewName(&quot;hello&quot;);</span><br><span class="line">		&#x2F;&#x2F;返回该视图</span><br><span class="line">		return mView;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>配置springmvc配置文件，打开springmvc-servlet.xml，配置handlerMapping和handlerAdapter：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 配置handlerMapping --&gt;</span><br><span class="line">&lt;bean class&#x3D;&quot;org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping&quot;&#x2F;&gt;</span><br><span class="line">&lt;!-- 配置handlerAdapter --&gt;</span><br><span class="line">&lt;bean class&#x3D;&quot;org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+配置渲染器：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 配置渲染器 --&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;jspViewResolver&quot; class&#x3D;&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;</span><br><span class="line"> &lt;property name&#x3D;&quot;viewClass&quot; value&#x3D;&quot;org.springframework.web.servlet.view.JstlView&quot;&#x2F;&gt;</span><br><span class="line"> &lt;property name&#x3D;&quot;prefix&quot; value&#x3D;&quot;&#x2F;WEB-INF&#x2F;jsp&#x2F;&quot;&#x2F;&gt;</span><br><span class="line"> &lt;property name&#x3D;&quot;suffix&quot; value&#x3D;&quot;.jsp&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
+渲染器的代码获取方式如下：<br><img src="6.gif" alt="6"></li>
+<li>在WEB-INF下新建一个文件夹，名为“jsp”，在文件夹中新建一个.jsp文件，名为“hello.jsp”，jsp的代码如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language&#x3D;&quot;java&quot; contentType&#x3D;&quot;text&#x2F;html; charset&#x3D;ISO-8859-1&quot;</span><br><span class="line">    pageEncoding&#x3D;&quot;ISO-8859-1&quot;%&gt;</span><br><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-&#x2F;&#x2F;W3C&#x2F;&#x2F;DTD HTML 4.01 Transitional&#x2F;&#x2F;EN&quot; &quot;http:&#x2F;&#x2F;www.w3.org&#x2F;TR&#x2F;html4&#x2F;loose.dtd&quot;&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv&#x3D;&quot;Content-Type&quot; content&#x3D;&quot;text&#x2F;html; charset&#x3D;ISO-8859-1&quot;&gt;</span><br><span class="line">&lt;title&gt;Insert title here&lt;&#x2F;title&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	$&#123;msg &#125;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+msg表示前面java文件中的hello MVC字符串。</li>
+<li>在springmvc-servlet.xml中配置请求处理器<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 配置请求和处理器,name的请求由calss处理  --&gt;</span><br><span class="line">&lt;bean name&#x3D;&quot;&#x2F;hello.do&quot; class&#x3D;&quot;springmvc.test.controller.HelloController&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+表示name属性的请求来的时候，class的属性进行处理。<br>最终springmvc-servlet.xml的代码如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&quot;</span><br><span class="line">    xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">    xmlns:p&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;p&quot;</span><br><span class="line">    xmlns:context&#x3D;&quot;http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;context&quot;</span><br><span class="line">    xsi:schemaLocation&#x3D;&quot;</span><br><span class="line">        http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans</span><br><span class="line">        http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;beans&#x2F;spring-beans.xsd</span><br><span class="line">        http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;context</span><br><span class="line">        http:&#x2F;&#x2F;www.springframework.org&#x2F;schema&#x2F;context&#x2F;spring-context.xsd&quot;&gt;</span><br><span class="line">		&lt;!-- 配置handlerMapping --&gt;</span><br><span class="line">		&lt;bean class&#x3D;&quot;org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping&quot;&#x2F;&gt;</span><br><span class="line">		&lt;!-- 配置handlerAdapter --&gt;</span><br><span class="line">		&lt;bean class&#x3D;&quot;org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter&quot;&#x2F;&gt;</span><br><span class="line">		</span><br><span class="line">		&lt;!-- 配置渲染器 --&gt;</span><br><span class="line">		&lt;bean id&#x3D;&quot;jspViewResolver&quot; class&#x3D;&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;</span><br><span class="line">   		 &lt;property name&#x3D;&quot;viewClass&quot; value&#x3D;&quot;org.springframework.web.servlet.view.JstlView&quot;&#x2F;&gt;</span><br><span class="line">   		 &lt;property name&#x3D;&quot;prefix&quot; value&#x3D;&quot;&#x2F;WEB-INF&#x2F;jsp&#x2F;&quot;&#x2F;&gt;</span><br><span class="line">  		 &lt;property name&#x3D;&quot;suffix&quot; value&#x3D;&quot;.jsp&quot;&#x2F;&gt;</span><br><span class="line">		&lt;&#x2F;bean&gt;  </span><br><span class="line">		</span><br><span class="line">		  &lt;!-- 配置请求和处理器,name的请求由calss处理  --&gt;</span><br><span class="line">		  &lt;bean name&#x3D;&quot;&#x2F;hello.do&quot; class&#x3D;&quot;springmvc.test.controller.HelloController&quot; &#x2F;&gt;</span><br><span class="line">&lt;&#x2F;beans&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="到此，配置完成，运行，选择Run-on-Server。打开本地浏览器，输入-http-localhost-8080-springmvc-hello-do，可以看到运行成功："><a href="#到此，配置完成，运行，选择Run-on-Server。打开本地浏览器，输入-http-localhost-8080-springmvc-hello-do，可以看到运行成功：" class="headerlink" title="到此，配置完成，运行，选择Run on Server。打开本地浏览器，输入: http://localhost:8080/springmvc/hello.do，可以看到运行成功："></a>到此，配置完成，运行，选择Run on Server。打开本地浏览器，输入: <code>http://localhost:8080/springmvc/hello.do</code>，可以看到运行成功：</h3><img src="7.jpg" alt="7"></li>
+</ol>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>JTongChen</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://jtongchen.github.io/2017/03/24/first-springmvc/">https://jtongchen.github.io/2017/03/24/first-springmvc/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="https://jtongchen.github.io/">JTongChen</a></span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2017/03/29/springmvc-config/">四种springmvc中controller配置方法</a>
+            
+            
+            <a class="next" rel="next" href="/2017/03/19/install-hexo-oschina/">关于Hexo的安装和部署页面到oschina</a>
+            
+        </section>
+
+		
+		
+			<section id="comments" class="comments" style="border-radius:10px;margin-top:50px">
+			<style>
+				.comments{margin:30px;padding:10px;background:#eee}
+				@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+			</style>
+			<div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+      el: '.valine_comment',
+      app_id: 'aGc71wUTWGmDQSe9JExrB8by-gzGzoHsz',
+      app_key: 'NjfReYd7E2wfvfYcjWYjMweT',
+      placeholder: 'comment here...',
+      notify: 'true',
+      verify: '',
+    });
+</script>
+			</section>
+		
+		
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© JTongChen | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

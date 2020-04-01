@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="JTongChen">
+
+
+
+
+
+<title>微服务 | JTongChen</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">JTongChen&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">JTongChen&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list" style="font-size:15px">
+    </div>
+    <div class="tocbot-list-menu" style="font-size:15px">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">微服务</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">JTongChen</a>
+                    
+
+                    
+                        <span class="post-time">
+                        &nbsp;&nbsp;Date: <a href="#">November 16, 2019&nbsp;&nbsp;15:47:19</a>
+                        </span>
+                    
+					
+					<span id="/2019/11/16/MicroService/" class="leancloud-visitors view" data-flag-title="微服务">
+						<em class="post-meta-item-text">&nbsp;&nbsp;Pageviews:</em>
+						<i class="leancloud-visitors-count">0</i>
+					</span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="微服务"><a href="#微服务" class="headerlink" title="微服务"></a>微服务</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>微服务是一种架构风格，一个大型复杂软件应用由一个或多个微服务组成。系统中的各个微服务可被独立部署，各个微服务之间是松耦合的。每个微服务仅关注于完成一件任务并很好地完成该任务。在所有情况下，每个任务代表着一个小的业务能力。(个人理解：将大型应用按照模块拆分成多个小应用，相互应用之间可以通过接口等形式进行交互。各个服务的功能、数据各自管理，各个服务的部署也是互不影响。)</p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ol>
+<li>每个服务都比较简单，只关注于一个业务功能。</li>
+<li>微服务架构方式是松耦合的，可以提供更高的灵活性。</li>
+<li>微服务可通过最佳及最合适的不同的编程语言与工具进行开发，能够做到有的放矢地解决针对性问题。</li>
+<li>每个微服务可由不同团队独立开发，互不影响，加快推出市场的速度。</li>
+<li>微服务架构是持续交付(CD)的巨大推动力，允许在频繁发布不同服务的同时保持系统其他部分的可用性和稳定性。</li>
+</ol>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ol>
+<li>运维开销及成本增加：整体应用可能只需部署至一小片应用服务区集群，而微服务架构可能变成需要构建/测试/部署/运行数十个独立的服务，并可能需要支持多种语言和环境。这导致一个整体式系统如果由20个微服务组成，可能需要40~60个进程。</li>
+<li>必须有坚实的DevOps开发运维一体化技能：开发人员需要熟知运维与投产环境，开发人员也需要掌握必要的数据存储技术如NoSQL。</li>
+<li>隐式接口及接口匹配问题：把系统分为多个协作组件后会产生新的接口，这意味着简单的交叉变化可能需要改变许多组件，并需协调一起发布。在实际环境中，一个新品发布可能被迫同时发布大量服务，由于集成点的大量增加，微服务架构会有更高的发布风险。</li>
+<li>代码重复：某些底层功能需要被多个服务所用，为了避免将“同步耦合引入到系统中”，有时需要向不同服务添加一些代码，这就会导致代码重复。</li>
+<li>分布式系统的复杂性：作为一种分布式系统，微服务引入了复杂性和其他若干问题，例如网络延迟、容错性、消息序列化、不可靠的网络、异步机制、版本化、差异化的工作负载等，开发人员需要考虑以上的分布式系统问题。</li>
+<li>异步机制：微服务往往使用异步编程、消息与并行机制，如果应用存在跨微服务的事务性处理，其实现机制会变得复杂化。</li>
+<li>可测性的挑战：在动态环境下服务间的交互会产生非常微妙的行为，难以可视化及全面测试。经典微服务往往不太重视测试，更多的是通过监控发现生产环境的异常，进而快速回滚或采取其他必要的行动。但对于特别在意风险规避监管或投产环境错误会产生显著影响的场景下需要特别注意。</li>
+</ol>
+<h4 id="微服务、分布式、集群的区分"><a href="#微服务、分布式、集群的区分" class="headerlink" title="微服务、分布式、集群的区分"></a>微服务、分布式、集群的区分</h4><p>分布式是将一个业务拆分成多个子业务，并且部署在不同的服务器上，一旦某个子业务的服务器出现问题，此业务将不能处理。集群是将同一个业务部署在多个服务器，一旦某台服务器出问题，此业务也能通过其他服务器正常访问(可通过nginx等进行请求转发处理)。而微服务是一种架构风格，将大的应用拆分成多个应用，各个服务松耦合，相互独立。<br>较好的应用部署，应该是分布式与集群相结合，分布式将业务拆分为多个子业务各自部署，再对每个子业务进行集群部署。这样，当某个集群节点上的子业务出现问题，完全不会影响到整个应用的正常使用，并且还能合理分配处理大量的请求到不同的服务器，减轻服务器的负担。</p>
+<h3 id="微服务实践"><a href="#微服务实践" class="headerlink" title="微服务实践"></a>微服务实践</h3><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>近期，公司的架构逐渐加入一些新技术，其中就包括将原来庞大的应用工程拆分成微服务架构。公司的主流项目是对客户的会员数据管理、销售数据管理等等。在今年，因为会员与销售板块较为重要，并且数据量也是日益庞大，于是我们抽成了独立的服务，进行独立的管理，只处理其相应的业务和数据。其中，我参与了会员板块的抽离。</p>
+<h4 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h4><p>会员模块的越来越庞大以及加上本来通过ElasticSearch处理部分业务的需求已经不能满足新的需求，经过讨论，最终决定将会员模块抽离为新的微服务，并且重新设计会员的数据字段以满足新的业务需求。其他原有业务则通过接口的方式，请求会员服务来进行数据交互。</p>
+<ul>
+<li>数据库：postgresql(后面简称pg)</li>
+<li>框架：spring boot + spring mvc + <a href="http://ibeetl.com/" target="_blank" rel="noopener">beetl</a></li>
+<li>接口设计：接口规范使用查询接口、更新接口、入库接口分模块；尽量做到所有请求方式用安全的POST请求，按照其他服务的业务需求，尽量规范统一的提供接口给其他服务使用。</li>
+<li>数据设计：会员基础信息，记录在一张表中，并且只是单纯的存储会员相关信息。其他业务所带来的统计数据，则新建数据统计相关的表。</li>
+</ul>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><ol>
+<li>数据设计与迁移<br>由于数据库的更改以及表字段的全新设计，需要将原有数据进行整合处理，然后输出为新表的字段数据，并且进行两个数据源的迁移(mysql—&gt;postgresql)。<br>准备好数据，根据新的需求，进行表的字段设计，并且按照需求进行sql性能测试。当我们将新的表建好，并且从生产环境中拷贝真实数据来进行测试的时候，发现一些复杂数据的实时查询，即使是pg也不能做到很高的性能，查询效率并不理想(例如:根据会员的消费小票进行数据查询，实时的大量数据统计查询，不管如何优化sql，最终的查询效率总是不理想，毕竟数据量就摆在那，遍历的数据行数总是那么多)。这个时候，我们只能通过别的方式，将数据进行归纳之后，再根据需求静态成所需要的字段，这样每次不需实时查询大量数据，只是查询静态下来的数据遍足够。由于需求有时间作为必填条件参数，我们决定将静态数据按照每个月一个字段进行存储(类似于:销售额1~销售额12)。当然，静态数据必然带来的问题是数据的更新，按照一定的时间间隔，需要对这部分进行数据进行统计更新(使用定时器统计方式，用户无感知的方式)。果然，新的字段设计方案，sql查询效率大大提高。</li>
+<li>框架搭建<br>原有的应用使用的是spring-boot，为了减少新框架的搭建成本以及新框架带来的兼容之类的小问题，会员服务使用的依旧是spring-boot，spring-boot项目中引入ORM等其他框架也十分方便，直接在pom文件中，写入相关依赖就行，例如beetl框架的引入：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.ibeetl&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;beetl-framework-starter&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;$&#123;最新版本&#125;&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+而spring mvc则是在spring-boot的以下依赖中包含：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-web&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+至于其他所需的依赖引入，则是一样的方式。</li>
+<li>业务修改<br>业务的修改是最消耗时间的，需要从原来大应用抽离所有使用到会员相关的业务代码(包括所有增删改查业务)，进行归纳统计，然后设计成由会员服务提供接口的方式，供原服务请求调用。<br>至于业务代码的具体处理，这里就不做详述，这里说一下如何在原应用调用会员服务，也就是微服务的相互交互。<br>首先，引入spring-cloud依赖：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+定义接口：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@FeignClient(name &#x3D; &quot;XXXApi&quot;,</span><br><span class="line">        configuration &#x3D; FeignConfiguration.class,</span><br><span class="line">        url &#x3D; &quot;服务地址&quot;)</span><br><span class="line">public interface XXXApi &#123;</span><br><span class="line">    @PostMapping(value &#x3D; &quot;服务定义接口路径&quot;)</span><br><span class="line">    Result&lt;Bean&gt; function(参数);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+接着，在原服务中通过调用此接口的方法，就能请求到会员服务。</li>
+<li>上线准备<br>至于上线的准备，因为涉及到数据迁移，所以上线只能停掉所有会员相关数据的入口，不让其产生新的数据，然后将数据迁移到新的数据库。数据迁移完成之后，灰度验证功能代码是否有误，无问题之后再正式上线即可。</li>
+</ol>
+<h4 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h4><p>将原来的数据迁移到新的服务，原来的数据库的负担大大减少，因为无需处理会员板块的大量数据业务。而新的数据pg，因为合理的设计，加上此服务只负责会员相关数据，不会有其他业务牵扯，业务处理效率也是明显提高。总的来说，这次会员微服务的抽离是成功的一次架构变动，也将带来后续其他功能模块的继续抽离，让整个项目成为多个微服务构建的松耦合项目。</p>
+<h4 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h4><p>在上线之后不久，我们发现pg库的数据内存量剧增，数据并没有大量增加，但是内存却不断上升。于是，我们怀疑是字段名太长导致，便做了测试，用短字段名新建表，插入同量的数据，确实内存占用少了很多。<br>查询pg库表占用内存空间语句：<br><code>select pg_size_pretty(pg_relation_size(&#39;表名&#39;));</code><br>于是着手为新的字段名的修改，涉及的相关代码也进行了修改。然而，修改业务的偶然间，发现问题似乎并非是由字段名造成。于是，重新建了两张表，一张长字段名，一张短字段名，并且同时插入相同的数据，结果查询发现，两张表相差几M的内存。由此可以排除是字段名问题。<br>同时，我们也发现，一旦对整张表中的某个字段进行更新之后，表的内存翻倍增长，于是，问题是在于数据的更新。由于我们有相关业务是需要定时更新字段，自然短时间内将表的内存不断增大。定位到此问题，查找相关资料，发现pg是有此问题所在，并且pg也提供了解决方法，那就是执行以下语句，从而解决内存的占用：<br><code>vacuum(full, analyze ) 表名;</code><br>至此，微服务的实现完成，整个过程确实能让自己提升不少，不管是从代码架构设计，数据根据业务逻辑的设计，问题的发现与处理，都是学到很多。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>JTongChen</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://jtongchen.github.io/2019/11/16/MicroService/">https://jtongchen.github.io/2019/11/16/MicroService/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="https://jtongchen.github.io/">JTongChen</a></span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%BB%8B%E7%BB%8D%E4%B8%8E%E5%AE%9E%E8%B7%B5/"># 微服务介绍与实践</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/11/17/xxl-job/">xxl-job</a>
+            
+            
+            <a class="next" rel="next" href="/2019/11/13/bug-about-intercurrent/">一个并发问题引发的bug</a>
+            
+        </section>
+
+		
+		
+			<section id="comments" class="comments" style="border-radius:10px;margin-top:50px">
+			<style>
+				.comments{margin:30px;padding:10px;background:#eee}
+				@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+			</style>
+			<div class="valine_comment"></div>
+<!--载入js，在</body>之前插入即可-->
+<!--Leancloud 操作库:-->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!--Valine 的核心代码库-->
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+      el: '.valine_comment',
+      app_id: 'aGc71wUTWGmDQSe9JExrB8by-gzGzoHsz',
+      app_key: 'NjfReYd7E2wfvfYcjWYjMweT',
+      placeholder: 'comment here...',
+      notify: 'true',
+      verify: '',
+    });
+</script>
+			</section>
+		
+		
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© JTongChen | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
